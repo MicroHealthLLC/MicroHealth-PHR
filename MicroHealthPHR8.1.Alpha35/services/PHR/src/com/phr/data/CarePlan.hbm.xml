@@ -1,0 +1,27 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.CarePlan" table="CarePlan" dynamic-insert="false" dynamic-update="false">
+        <id name="CarePlanID" type="integer">
+            <column name="CarePlanID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="CarePlan" type="text">
+            <column name="CarePlan" length="2000" not-null="true"/>
+        </property>
+        <property name="CarePlanDueDate" type="date">
+            <column name="CarePlanDueDate"/>
+        </property>
+        <property name="UserID" type="integer">
+            <column name="UserID" length="100"/>
+        </property>
+        <property name="ProblemTitle" type="text">
+            <column name="ProblemTitle" length="200"/>
+        </property>
+        <property name="CarePlanDate" type="date">
+            <column name="CarePlanDate"/>
+        </property>
+        <many-to-one name="relCarePlanStatus" class="com.phr.data.LutCarePlanStatus" cascade="none">
+            <column name="CarePlanStatusID"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

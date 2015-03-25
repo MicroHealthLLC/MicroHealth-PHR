@@ -1,0 +1,39 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.Laboratory" table="Laboratory" dynamic-insert="false" dynamic-update="false">
+        <id name="LaboratoryID" type="integer">
+            <column name="LaboratoryID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="LaboratoryPanel" type="text">
+            <column name="LaboratoryPanel" length="100"/>
+        </property>
+        <property name="LaboratoryTest" type="text">
+            <column name="LaboratoryTest" length="200" not-null="true"/>
+        </property>
+        <property name="LaboratoryResult" type="text">
+            <column name="LaboratoryResult" not-null="true"/>
+        </property>
+        <property name="LaboratoryRefRange" type="text">
+            <column name="LaboratoryRefRange" length="100"/>
+        </property>
+        <property name="LaboratoryDate" type="date">
+            <column name="LaboratoryDate"/>
+        </property>
+        <property name="LaboratoryNotes" type="text">
+            <column name="LaboratoryNotes" length="500"/>
+        </property>
+        <property name="tenantid" type="integer">
+            <column name="tenantid"/>
+        </property>
+        <property name="UserID" type="integer">
+            <column name="UserID" length="100"/>
+        </property>
+        <property name="ProblemTitle" type="text">
+            <column name="ProblemTitle" length="200"/>
+        </property>
+        <many-to-one name="relLaboratoryFlag" class="com.phr.data.LutLaboratoryFlag" cascade="none">
+            <column name="LaboratoryFlagID"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

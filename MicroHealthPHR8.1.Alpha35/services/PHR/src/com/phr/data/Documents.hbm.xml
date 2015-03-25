@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.Documents" table="Documents" dynamic-insert="false" dynamic-update="false">
+        <id name="DocumentID" type="integer">
+            <column name="DocumentID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="DocumentTitle" type="text">
+            <column name="DocumentTitle" length="200" not-null="true"/>
+        </property>
+        <property name="DocumentDescription" type="text">
+            <column name="DocumentDescription" length="500"/>
+        </property>
+        <property name="DocumentDate" type="date">
+            <column name="DocumentDate"/>
+        </property>
+        <property name="tenantid" type="integer">
+            <column name="tenantid"/>
+        </property>
+        <property name="UserID" type="integer">
+            <column name="UserID" length="100"/>
+        </property>
+        <property name="ProblemTitle" type="text">
+            <column name="ProblemTitle" length="200"/>
+        </property>
+        <many-to-one name="relDocumetType" class="com.phr.data.LutDocumentType" cascade="none">
+            <column name="DocumentTypeID"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

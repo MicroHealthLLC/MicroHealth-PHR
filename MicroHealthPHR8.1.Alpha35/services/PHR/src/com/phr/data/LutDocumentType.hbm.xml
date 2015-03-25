@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.LutDocumentType" table="LutDocumentType" dynamic-insert="false" dynamic-update="false">
+        <id name="DocumentTypeID" type="integer">
+            <column name="DocumentTypeID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="DocumentType" type="text">
+            <column name="DocumentType" length="100" not-null="true"/>
+        </property>
+        <set name="documentss" inverse="true" cascade="">
+            <key>
+                <column name="DocumentTypeID"/>
+            </key>
+            <one-to-many class="com.phr.data.Documents"/>
+        </set>
+    </class>
+</hibernate-mapping>

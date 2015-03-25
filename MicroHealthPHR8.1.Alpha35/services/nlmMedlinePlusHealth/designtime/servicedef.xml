@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="nlmMedlinePlusHealth" class="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.NlmMedlinePlusHealth" CRUDService="false" type="WebService" springFile="nlmMedlinePlusHealth.spring.xml">
+    <operation name="invoke">
+        <parameter name="db" typeRef="java.lang.String" isList="false"/>
+        <parameter name="term" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.NlmSearchResult" isList="false"/>
+    </operation>
+    <dataobjects>
+        <dataobject javaType="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.NlmSearchResult" name="NlmSearchResult" supportsQuickData="false">
+            <element name="term" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="file" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="server" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="count" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="retstart" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="retmax" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="list" typeRef="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.ListTypeType" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.ListTypeType" name="ListTypeType" supportsQuickData="false">
+            <element name="documents" typeRef="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.DocumentTypeType" isList="true" allowNull="false"/>
+            <element name="num" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="start" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="per" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.DocumentTypeType" name="DocumentTypeType" supportsQuickData="false">
+            <element name="contents" typeRef="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.ContentTypeType" isList="true" allowNull="false"/>
+            <element name="rank" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="url" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.ContentTypeType" name="ContentTypeType" supportsQuickData="false">
+            <element name="value" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="name" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+    </dataobjects>
+</service>

@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.LutVitalsType" table="LutVitalsType" dynamic-insert="false" dynamic-update="false">
+        <id name="VitalsTypeID" type="integer">
+            <column name="VitalsTypeID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="VitalsType" type="text">
+            <column name="VitalsType" length="100" not-null="true"/>
+        </property>
+        <set name="vitalss" inverse="true" cascade="">
+            <key>
+                <column name="VitalsTypeID" not-null="true"/>
+            </key>
+            <one-to-many class="com.phr.data.Vitals"/>
+        </set>
+    </class>
+</hibernate-mapping>

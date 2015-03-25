@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<beans xsi:schemaLocation="http://schema.cloudfoundry.org/spring http://schema.cloudfoundry.org/spring/cloudfoundry-spring-0.8.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" xmlns="http://www.springframework.org/schema/beans" xmlns:cloud="http://schema.cloudfoundry.org/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <bean class="com.wavemaker.runtime.service.TypeManager" parent="typeManagerBase" scope="singleton" id="typeManager">
+        <property name="types">
+            <map merge="true">
+                <entry key="FileUploadDownload">
+                    <list>
+                        <value>com.wavemaker.runtime.server.DownloadResponse</value>
+                        <value>java.io.File</value>
+                        <value>FileUploadDownload.WMFile</value>
+                        <value>com.wavemaker.runtime.server.FileUploadResponse</value>
+                        <value>org.springframework.web.multipart.MultipartFile</value>
+                    </list>
+                </entry>
+                <entry key="PHR">
+                    <list>
+                        <value>com.phr.data.Allergies</value>
+                        <value>com.phr.data.Appointment</value>
+                        <value>com.phr.data.CarePlan</value>
+                        <value>com.phr.data.Documents</value>
+                        <value>com.phr.data.Files</value>
+                        <value>com.phr.data.Immunization</value>
+                        <value>com.phr.data.Journal</value>
+                        <value>com.phr.data.Laboratory</value>
+                        <value>com.phr.data.LutAppointmentStatus</value>
+                        <value>com.phr.data.LutCarePlanStatus</value>
+                        <value>com.phr.data.LutDocumentType</value>
+                        <value>com.phr.data.LutLaboratoryFlag</value>
+                        <value>com.phr.data.LutMedicationStatus</value>
+                        <value>com.phr.data.LutProblemType</value>
+                        <value>com.phr.data.LutRadiologyFlag</value>
+                        <value>com.phr.data.LutVitalsFlag</value>
+                        <value>com.phr.data.LutVitalsType</value>
+                        <value>com.phr.data.Medications</value>
+                        <value>com.phr.data.Problems</value>
+                        <value>com.phr.data.Radiology</value>
+                        <value>com.phr.data.User</value>
+                        <value>com.phr.data.Vitals</value>
+                        <value>com.phr.data.output.GetProblemListRtnType</value>
+                        <value>com.phr.data.output.GetMedicationListRtnType</value>
+                        <value>com.phr.data.output.GetAllergyTitleRtnType</value>
+                        <value>com.phr.data.output.GetJournalGraphRtnType</value>
+                        <value>com.phr.data.output.GetVitalsGraphRtnType</value>
+                        <value>com.phr.data.output.GetLabsListRtnType</value>
+                        <value>com.phr.data.output.GetCarePlanGraphRtnType</value>
+                        <value>com.phr.data.output.GetJournalTitleRtnType</value>
+                        <value>com.phr.data.output.GetLabsGraphRtnType</value>
+                    </list>
+                </entry>
+                <entry key="nlmMedlinePlusHealth">
+                    <list>
+                        <value>gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.NlmSearchResult</value>
+                        <value>gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.ListTypeType</value>
+                        <value>gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.DocumentTypeType</value>
+                        <value>gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.ContentTypeType</value>
+                    </list>
+                </entry>
+                <entry key="securityService">
+                    <list/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

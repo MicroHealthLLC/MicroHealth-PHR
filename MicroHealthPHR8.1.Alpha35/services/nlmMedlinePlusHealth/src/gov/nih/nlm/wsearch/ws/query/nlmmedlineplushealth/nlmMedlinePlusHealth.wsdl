@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:tns="http://wsearch.nlm.nih.gov/ws/query" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wsearch.nlm.nih.gov/ws/query">
+<wsdl:documentation>endpoint=http://wsearch.nlm.nih.gov/ws/query?db={db}&amp;term={term}</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="nlmSearchResult" type="nlmSearchResultType"/>
+  <xs:complexType name="nlmSearchResultType">
+    <xs:sequence>
+      <xs:element name="term" type="xs:string"/>
+      <xs:element name="file" type="xs:string"/>
+      <xs:element name="server" type="xs:string"/>
+      <xs:element name="count" type="xs:string"/>
+      <xs:element name="retstart" type="xs:string"/>
+      <xs:element name="retmax" type="xs:string"/>
+      <xs:element name="list" type="listType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="documentType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="content" type="contentType"/>
+    </xs:sequence>
+    <xs:attribute name="rank" type="xs:string" use="optional"/>
+    <xs:attribute name="url" type="xs:string" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="listType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="document" type="documentType"/>
+    </xs:sequence>
+    <xs:attribute name="num" type="xs:string"/>
+    <xs:attribute name="start" type="xs:string"/>
+    <xs:attribute name="per" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="contentType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="name" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="RequestMsg">
+    <wsdl:part name="db" type="xs:string">
+    </wsdl:part>
+    <wsdl:part name="term" type="xs:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ResponseMsg">
+    <wsdl:part element="nlmSearchResult" name="body">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="nlmMedlinePlusHealth">
+    <wsdl:operation name="invoke">
+      <wsdl:input message="tns:RequestMsg">
+    </wsdl:input>
+      <wsdl:output message="tns:ResponseMsg">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

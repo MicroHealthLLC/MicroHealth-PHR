@@ -1,0 +1,16 @@
+{
+	"methods": [{
+		"name": "invoke",
+		"operationType": null,
+		"parameters": [{
+			"name": "db",
+			"type": "java.lang.String"
+		}, {
+			"name": "term",
+			"type": "java.lang.String"
+		}],
+		"returnType": "gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth.NlmSearchResult"
+	}],
+	"serviceType": "JSON-RPC",
+	"serviceURL": "nlmMedlinePlusHealth.json"
+}

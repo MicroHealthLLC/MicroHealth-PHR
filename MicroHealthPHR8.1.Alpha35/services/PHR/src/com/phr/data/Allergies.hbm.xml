@@ -1,0 +1,36 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.Allergies" table="Allergies" dynamic-insert="false" dynamic-update="false">
+        <id name="AllergyID" type="integer">
+            <column name="AllergyID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="AllergyTitle" type="text">
+            <column name="AllergyTitle" length="100" not-null="true"/>
+        </property>
+        <property name="AllergyDescription" type="text">
+            <column name="AllergyDescription" length="500"/>
+        </property>
+        <property name="AllergyReaction" type="text">
+            <column name="AllergyReaction" length="500"/>
+        </property>
+        <property name="AllergyStart" type="date">
+            <column name="AllergyStart"/>
+        </property>
+        <property name="AllergyResolved" type="date">
+            <column name="AllergyResolved"/>
+        </property>
+        <property name="AllergyCode" type="text">
+            <column name="AllergyCode" length="100"/>
+        </property>
+        <property name="tenantid" type="integer">
+            <column name="tenantid"/>
+        </property>
+        <property name="UserID" type="integer">
+            <column name="UserID" length="100"/>
+        </property>
+        <property name="ProblemTitle" type="text">
+            <column name="ProblemTitle" length="200"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<beans xsi:schemaLocation="http://schema.cloudfoundry.org/spring http://schema.cloudfoundry.org/spring/cloudfoundry-spring-0.8.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" xmlns="http://www.springframework.org/schema/beans" xmlns:cloud="http://schema.cloudfoundry.org/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <bean class="com.phr.PHR" scope="singleton" lazy-init="true" id="PHR">
+        <property name="dataServiceManager">
+            <ref bean="PHRDataService"/>
+        </property>
+        <property name="taskManager">
+            <ref bean="PHRTaskMgr"/>
+        </property>
+    </bean>
+    <bean class="com.wavemaker.runtime.data.spring.WMPropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:PHR.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" lazy-init="true" id="PHRDataSource">
+        <property name="driverClassName" value="${PHR.driverClassName}"/>
+        <property name="url" value="${PHR.connectionUrl}"/>
+        <property name="username" value="${PHR.username}"/>
+        <property name="password" value="${PHR.password}"/>
+    </bean>
+    <bean class="org.springframework.orm.hibernate3.HibernateTransactionManager" lazy-init="true" id="PHRTxMgr">
+        <property name="sessionFactory">
+            <ref bean="PHRSessionFactory"/>
+        </property>
+    </bean>
+    <bean class="org.springframework.orm.hibernate3.HibernateTemplate" lazy-init="true" id="PHRHibernateTemplate">
+        <property name="sessionFactory">
+            <ref bean="PHRSessionFactory"/>
+        </property>
+    </bean>
+    <bean class="com.wavemaker.runtime.data.spring.ConfigurationAndSessionFactoryBean" lazy-init="true" id="PHRSessionFactory">
+        <property name="name" value="PHR"/>
+        <property name="dataSource" ref="PHRDataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${PHR.dialect}</prop>
+                <prop key="hibernate.transaction.factory_class">
+                    org.hibernate.transaction.JDBCTransactionFactory
+                </prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>com/phr/data/Allergies.hbm.xml</value>
+                <value>com/phr/data/Appointment.hbm.xml</value>
+                <value>com/phr/data/CarePlan.hbm.xml</value>
+                <value>com/phr/data/Documents.hbm.xml</value>
+                <value>com/phr/data/Files.hbm.xml</value>
+                <value>com/phr/data/Immunization.hbm.xml</value>
+                <value>com/phr/data/Journal.hbm.xml</value>
+                <value>com/phr/data/Laboratory.hbm.xml</value>
+                <value>com/phr/data/LutAppointmentStatus.hbm.xml</value>
+                <value>com/phr/data/LutCarePlanStatus.hbm.xml</value>
+                <value>com/phr/data/LutDocumentType.hbm.xml</value>
+                <value>com/phr/data/LutLaboratoryFlag.hbm.xml</value>
+                <value>com/phr/data/LutMedicationStatus.hbm.xml</value>
+                <value>com/phr/data/LutProblemType.hbm.xml</value>
+                <value>com/phr/data/LutRadiologyFlag.hbm.xml</value>
+                <value>com/phr/data/LutVitalsFlag.hbm.xml</value>
+                <value>com/phr/data/LutVitalsType.hbm.xml</value>
+                <value>com/phr/data/Medications.hbm.xml</value>
+                <value>com/phr/data/Problems.hbm.xml</value>
+                <value>com/phr/data/Radiology.hbm.xml</value>
+                <value>com/phr/data/User.hbm.xml</value>
+                <value>com/phr/data/Vitals.hbm.xml</value>
+                <value>com/phr/data/app-queries.ql.xml</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="com.wavemaker.runtime.data.spring.SpringDataServiceManager" lazy-init="true" id="PHRDataService">
+        <constructor-arg>
+            <value>PHR</value>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="PHRHibernateTemplate"/>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="PHRTxMgr"/>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="PHRTaskMgr"/>
+        </constructor-arg>
+        <constructor-arg>
+            <map>
+                <entry key="useIndividualCRUDOperations" value="false"/>
+                <entry key="refreshEntities" value=""/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean class="com.wavemaker.runtime.data.DefaultTaskManager" lazy-init="true" id="PHRTaskMgr"/>
+    <bean class="com.wavemaker.runtime.service.events.EventWire" lazy-init="false">
+        <property name="serviceWire" ref="PHRServiceWire"/>
+        <property name="eventListener">
+            <bean class="com.wavemaker.runtime.data.DataServiceEventListener"/>
+        </property>
+    </bean>
+    <bean class="com.wavemaker.runtime.service.reflect.ReflectServiceWire" scope="singleton" lazy-init="false" id="PHRServiceWire">
+        <property name="serviceId" value="PHR"/>
+        <property name="serviceType" ref="DataService"/>
+    </bean>
+</beans>

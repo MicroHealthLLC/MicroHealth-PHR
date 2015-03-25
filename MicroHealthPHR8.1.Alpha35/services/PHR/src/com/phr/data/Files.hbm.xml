@@ -1,0 +1,24 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.Files" table="Files" dynamic-insert="false" dynamic-update="false">
+        <id name="FilesID" type="integer">
+            <column name="FilesID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="text">
+            <column name="name" length="200" not-null="true"/>
+        </property>
+        <property name="path" type="text">
+            <column name="path" length="300" not-null="true"/>
+        </property>
+        <property name="tenantid" type="integer">
+            <column name="tenantid"/>
+        </property>
+        <property name="UserID" type="integer">
+            <column name="UserID" length="100"/>
+        </property>
+        <property name="DocumentID" type="integer">
+            <column name="DocumentID" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.Immunization" table="Immunization" dynamic-insert="false" dynamic-update="false">
+        <id name="ImmunizationID" type="integer">
+            <column name="ImmunizationID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="ImmunizationName" type="text">
+            <column name="ImmunizationName" length="200" not-null="true"/>
+        </property>
+        <property name="ImmunizationDate" type="date">
+            <column name="ImmunizationDate" not-null="true"/>
+        </property>
+        <property name="ImmunizationNextDue" type="date">
+            <column name="ImmunizationNextDue"/>
+        </property>
+        <property name="ImmunizationNotes" type="text">
+            <column name="ImmunizationNotes" length="500"/>
+        </property>
+        <property name="tenantid" type="integer">
+            <column name="tenantid"/>
+        </property>
+        <property name="UserID" type="integer">
+            <column name="UserID" length="100"/>
+        </property>
+        <property name="ProblemTitle" type="text">
+            <column name="ProblemTitle" length="200"/>
+        </property>
+    </class>
+</hibernate-mapping>

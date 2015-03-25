@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jaxb:bindings
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    version="2.0">
+    <jaxb:bindings schemaLocation="file:/var/folders/f0/n__4567x5ng7jttng31km8nm0000gn/T/wsdl_directory7907548765196716544.tmp/nlmMedlinePlusHealth.wsdl" node="//xsd:schema[1]">
+        <jaxb:schemaBindings>
+            <jaxb:package name="gov.nih.nlm.wsearch.ws.query.nlmmedlineplushealth"/>
+            <jaxb:nameXmlTransform>
+                <jaxb:typeName suffix="Type"/>
+            </jaxb:nameXmlTransform>
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+</jaxb:bindings>

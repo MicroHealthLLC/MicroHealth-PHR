@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.User" table="User" dynamic-insert="false" dynamic-update="false">
+        <id name="UserID" type="integer">
+            <column name="UserID" length="100"/>
+            <generator class="identity"/>
+        </id>
+        <property name="username" type="text">
+            <column name="username" length="20" not-null="true"/>
+        </property>
+        <property name="password" type="text">
+            <column name="password" length="20" not-null="true"/>
+        </property>
+        <property name="FirstName" type="text">
+            <column name="FirstName" length="100" not-null="true"/>
+        </property>
+        <property name="LastName" type="text">
+            <column name="LastName" length="100" not-null="true"/>
+        </property>
+        <property name="Role" type="text">
+            <column name="Role"/>
+        </property>
+        <property name="tenantid" type="integer">
+            <column name="tenantid"/>
+        </property>
+        <property name="Email" type="text">
+            <column name="Email" length="200"/>
+        </property>
+    </class>
+</hibernate-mapping>

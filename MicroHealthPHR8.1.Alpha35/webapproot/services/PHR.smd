@@ -1,0 +1,99 @@
+{
+	"methods": [{
+		"name": "deleteDocumentFiles",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "documentid",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "java.lang.Integer"
+	}, {
+		"name": "deleteFiles",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "PathInput",
+			"type": "java.lang.String"
+		}],
+		"returnType": "java.lang.Integer"
+	}, {
+		"name": "getAllergyTitle",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "UserID",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "[com.phr.data.output.GetAllergyTitleRtnType]"
+	}, {
+		"name": "getCarePlanGraph",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "userid",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "[com.phr.data.output.GetCarePlanGraphRtnType]"
+	}, {
+		"name": "getJournalGraph",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "userid",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "[com.phr.data.output.GetJournalGraphRtnType]"
+	}, {
+		"name": "getJournalTitle",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "UserID",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "[com.phr.data.output.GetJournalTitleRtnType]"
+	}, {
+		"name": "getLabsGraph",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "userid",
+			"type": "java.lang.Integer"
+		}, {
+			"name": "laboratorytest",
+			"type": "java.lang.String"
+		}],
+		"returnType": "[com.phr.data.output.GetLabsGraphRtnType]"
+	}, {
+		"name": "getLabsList",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "UserID",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "[com.phr.data.output.GetLabsListRtnType]"
+	}, {
+		"name": "getMedicationList",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "UserID",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "[com.phr.data.output.GetMedicationListRtnType]"
+	}, {
+		"name": "getProblemList",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "UserID",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "[com.phr.data.output.GetProblemListRtnType]"
+	}, {
+		"name": "getVitalsGraph",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "userid",
+			"type": "java.lang.Integer"
+		}, {
+			"name": "vitalstypeID",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "[com.phr.data.output.GetVitalsGraphRtnType]"
+	}],
+	"serviceType": "JSON-RPC",
+	"serviceURL": "PHR.json"
+}

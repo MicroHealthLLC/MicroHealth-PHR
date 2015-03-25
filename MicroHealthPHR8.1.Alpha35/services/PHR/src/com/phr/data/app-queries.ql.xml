@@ -1,0 +1,86 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <meta attribute="@design.default-queries"/>
+    <query name="getProblemList">
+        <query-param name="UserID" type="java.lang.Integer"/>
+        SELECT ProblemTitle AS problem,
+UserID AS userid
+FROM Problems
+WHERE (userid) = (:UserID)
+GROUP BY ProblemTitle
+    </query>
+    <query name="deleteFiles">
+        <query-param name="PathInput" type="java.lang.String"/>
+        DELETE FROM Files WHERE path = :PathInput
+    </query>
+    <query name="deleteDocumentFiles">
+        <query-param name="documentid" type="java.lang.Integer"/>
+        DELETE FROM Files WHERE DocumentID = :documentid
+    </query>
+    <query name="getVitalsGraph">
+        <query-param name="userid" type="java.lang.Integer"/>
+        <query-param name="vitalstypeID" type="java.lang.Integer"/>
+        SELECT VitalsDate AS date, VitalsMeasurement AS vitals
+FROM Vitals
+WHERE UserID = :userid AND
+VitalsTypeID = :vitalstypeID
+ORDER BY VitalsDate DESC
+    </query>
+    <query name="getLabsGraph">
+        <query-param name="userid" type="java.lang.Integer"/>
+        <query-param name="laboratorytest" type="java.lang.String"/>
+        SELECT LaboratoryDate AS date, LaboratoryResult AS labs
+FROM Laboratory
+WHERE UserID = :userid AND
+LaboratoryTest= :laboratorytest
+ORDER BY LaboratoryDate DESC
+    </query>
+    <query name="getJournalTitle">
+        <query-param name="UserID" type="java.lang.Integer"/>
+        SELECT JournalTitle AS journal,
+UserID AS userid
+FROM Journal
+WHERE (userid) = (:UserID)
+GROUP BY JournalTitle
+    </query>
+    <query name="getAllergyTitle">
+        <query-param name="UserID" type="java.lang.Integer"/>
+        SELECT AllergyTitle AS allergy,
+UserID AS userid
+FROM Allergies
+WHERE (userid) = (:UserID)
+GROUP BY AllergyTitle
+    </query>
+    <query name="getMedicationList">
+        <query-param name="UserID" type="java.lang.Integer"/>
+        SELECT MedicationTitle AS medication,
+UserID AS userid
+FROM Medications
+WHERE (userid) = (:UserID)
+GROUP BY MedicationTitle
+    </query>
+    <query name="getLabsList">
+        <query-param name="UserID" type="java.lang.Integer"/>
+        SELECT LaboratoryTest AS lab,
+UserID AS userid
+FROM Laboratory
+WHERE (userid) = (:UserID)
+GROUP BY LaboratoryTest
+    </query>
+    <query name="getCarePlanGraph">
+        <query-param name="userid" type="java.lang.Integer"/>
+        SELECT ProblemTitle AS problem, COUNT (ProblemTitle) as occurence
+FROM CarePlan
+WHERE UserID = :userid
+GROUP BY ProblemTitle
+ORDER BY COUNT (ProblemTitle) DESC
+    </query>
+    <query name="getJournalGraph">
+        <query-param name="userid" type="java.lang.Integer"/>
+        SELECT JournalTitle AS journal, COUNT (JournalTitle) as occurrence
+FROM Journal
+WHERE UserID = :userid
+GROUP BY JournalTitle
+ORDER BY COUNT (JournalTitle) DESC
+    </query>
+</hibernate-mapping>

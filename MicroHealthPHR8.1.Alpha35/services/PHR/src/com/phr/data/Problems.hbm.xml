@@ -1,0 +1,33 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.phr.data.Problems" table="Problems" dynamic-insert="false" dynamic-update="false">
+        <id name="ProblemID" type="integer">
+            <column name="ProblemID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="ProblemTitle" type="text">
+            <column name="ProblemTitle" length="200" not-null="true"/>
+        </property>
+        <property name="ProblemDescription" type="text">
+            <column name="ProblemDescription" length="500"/>
+        </property>
+        <property name="ProblemDateStart" type="date">
+            <column name="ProblemDateStart"/>
+        </property>
+        <property name="ProblemDateResolve" type="date">
+            <column name="ProblemDateResolve"/>
+        </property>
+        <property name="ProblemCode" type="text">
+            <column name="ProblemCode" length="100"/>
+        </property>
+        <property name="tenantid" type="integer">
+            <column name="tenantid"/>
+        </property>
+        <property name="UserID" type="integer">
+            <column name="UserID" length="100"/>
+        </property>
+        <many-to-one name="relProblemType" class="com.phr.data.LutProblemType" cascade="none">
+            <column name="ProblemTypeID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

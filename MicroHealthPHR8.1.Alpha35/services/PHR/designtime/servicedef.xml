@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="PHR" class="com.phr.PHR" CRUDService="true" type="DataService" springFile="PHR.spring.xml">
+    <operation operationType="hqlquery" name="getVitalsGraph">
+        <parameter name="userid" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="vitalstypeID" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.phr.data.output.GetVitalsGraphRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="deleteDocumentFiles">
+        <parameter name="documentid" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="java.lang.Integer" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="getJournalTitle">
+        <parameter name="UserID" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.phr.data.output.GetJournalTitleRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="getLabsGraph">
+        <parameter name="userid" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="laboratorytest" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="com.phr.data.output.GetLabsGraphRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="getCarePlanGraph">
+        <parameter name="userid" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.phr.data.output.GetCarePlanGraphRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="getLabsList">
+        <parameter name="UserID" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.phr.data.output.GetLabsListRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="deleteFiles">
+        <parameter name="PathInput" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="java.lang.Integer" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="getMedicationList">
+        <parameter name="UserID" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.phr.data.output.GetMedicationListRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="getProblemList">
+        <parameter name="UserID" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.phr.data.output.GetProblemListRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="getJournalGraph">
+        <parameter name="userid" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.phr.data.output.GetJournalGraphRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="getAllergyTitle">
+        <parameter name="UserID" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.phr.data.output.GetAllergyTitleRtnType" isList="true"/>
+    </operation>
+    <dataobjects>
+        <dataobject javaType="com.phr.data.Allergies" supportsQuickData="true">
+            <element name="AllergyID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="AllergyTitle" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="AllergyDescription" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="AllergyReaction" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="AllergyStart" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="AllergyResolved" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="AllergyCode" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Appointment" supportsQuickData="true">
+            <element name="AppointmentID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="AppointmentTitle" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="AppointmentDescription" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="AppointmentDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="AppointmentTime" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="relAppointmetnStatus" typeRef="com.phr.data.LutAppointmentStatus" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.CarePlan" supportsQuickData="true">
+            <element name="CarePlanID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="CarePlan" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="CarePlanDueDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="CarePlanDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="relCarePlanStatus" typeRef="com.phr.data.LutCarePlanStatus" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Documents" supportsQuickData="true">
+            <element name="DocumentID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="DocumentTitle" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="DocumentDescription" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="DocumentDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="relDocumetType" typeRef="com.phr.data.LutDocumentType" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Files" supportsQuickData="true">
+            <element name="FilesID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="name" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="path" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="DocumentID" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Immunization" supportsQuickData="true">
+            <element name="ImmunizationID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="ImmunizationName" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="ImmunizationDate" typeRef="java.util.Date" isList="false" allowNull="false"/>
+            <element name="ImmunizationNextDue" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="ImmunizationNotes" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Journal" supportsQuickData="true">
+            <element name="JournalID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="JournalTitle" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="JournalDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="JournalEntry" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Laboratory" supportsQuickData="true">
+            <element name="LaboratoryID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="LaboratoryPanel" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="LaboratoryTest" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="LaboratoryResult" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="LaboratoryRefRange" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="LaboratoryDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="LaboratoryNotes" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="relLaboratoryFlag" typeRef="com.phr.data.LutLaboratoryFlag" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutAppointmentStatus" supportsQuickData="true">
+            <element name="AppointmentStatusid" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="AppointmentStatus" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="appointments" typeRef="com.phr.data.Appointment" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutCarePlanStatus" supportsQuickData="true">
+            <element name="CarePlanStatsID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="CarePlanStatus" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="careplans" typeRef="com.phr.data.CarePlan" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutDocumentType" supportsQuickData="true">
+            <element name="DocumentTypeID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="DocumentType" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="documentss" typeRef="com.phr.data.Documents" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutLaboratoryFlag" supportsQuickData="true">
+            <element name="LaboratoryFlagID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="LaboratoryFlag" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="laboratories" typeRef="com.phr.data.Laboratory" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutMedicationStatus" supportsQuickData="true">
+            <element name="MedicationStatusID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="MedicationStatus" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="medicationss" typeRef="com.phr.data.Medications" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutProblemType" supportsQuickData="true">
+            <element name="ProblemTypeID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="ProblemType" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="problemss" typeRef="com.phr.data.Problems" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutRadiologyFlag" supportsQuickData="true">
+            <element name="RadiologyFlagID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="RadiologyFlag" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="radiologies" typeRef="com.phr.data.Radiology" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutVitalsFlag" supportsQuickData="true">
+            <element name="VitalsFlagID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="VitalsFlag" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="vitalss" typeRef="com.phr.data.Vitals" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.LutVitalsType" supportsQuickData="true">
+            <element name="VitalsTypeID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="VitalsType" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="vitalss" typeRef="com.phr.data.Vitals" isList="true" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Medications" supportsQuickData="true">
+            <element name="MedicationID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="MedicationTitle" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="MedicationDirection" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="MedicationQuantity" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="MedicationRefillsLeft" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="MedicationPharmacy" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="MedicationDateFilled" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="MedicationNextRefillDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="MedicationNotes" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="MedicationExpirationDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="relMedicationStatus" typeRef="com.phr.data.LutMedicationStatus" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Problems" supportsQuickData="true">
+            <element name="ProblemID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="ProblemDescription" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="ProblemDateStart" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="ProblemDateResolve" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="ProblemCode" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="relProblemType" typeRef="com.phr.data.LutProblemType" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Radiology" supportsQuickData="true">
+            <element name="RadiologyID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="RadiologyExam" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="RadiologyResult" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="RadiologyDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="RadiologyNotes" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="relRadiologyFlag" typeRef="com.phr.data.LutRadiologyFlag" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.User" supportsQuickData="true">
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="username" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="password" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="FirstName" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="LastName" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Role" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="Email" typeRef="java.lang.String" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.Vitals" supportsQuickData="true">
+            <element name="VitalsID" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="VitalsDate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="VitalsMeasurement" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="VitalsNotes" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="tenantid" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="UserID" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="ProblemTitle" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="relVitalsType" typeRef="com.phr.data.LutVitalsType" isList="false" allowNull="false"/>
+            <element name="relVitalsFlag" typeRef="com.phr.data.LutVitalsFlag" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetProblemListRtnType" supportsQuickData="false">
+            <element name="problem" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="userid" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetMedicationListRtnType" supportsQuickData="false">
+            <element name="medication" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="userid" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetAllergyTitleRtnType" supportsQuickData="false">
+            <element name="allergy" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="userid" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetJournalGraphRtnType" supportsQuickData="false">
+            <element name="journal" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="occurrence" typeRef="java.lang.Long" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetVitalsGraphRtnType" supportsQuickData="false">
+            <element name="date" typeRef="java.util.Date" isList="false" allowNull="false"/>
+            <element name="vitals" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetLabsListRtnType" supportsQuickData="false">
+            <element name="lab" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="userid" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetCarePlanGraphRtnType" supportsQuickData="false">
+            <element name="problem" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="occurence" typeRef="java.lang.Long" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetJournalTitleRtnType" supportsQuickData="false">
+            <element name="journal" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="userid" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.phr.data.output.GetLabsGraphRtnType" supportsQuickData="false">
+            <element name="date" typeRef="java.util.Date" isList="false" allowNull="false"/>
+            <element name="labs" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+    </dataobjects>
+</service>
